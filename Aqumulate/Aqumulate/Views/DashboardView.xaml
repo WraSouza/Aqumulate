@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+             xmlns:dxcv="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             xmlns:local="clr-namespace:Aqumulate.Models"
+             Title="Dashboard"
+             x:Class="Aqumulate.Views.DashboardView">
+    <ContentPage.BindingContext>
+        <local:Dashboard />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <charts:PieChartView x:Name="chart" HeightRequest="200">
+                <charts:PieChartView.Legend>
+                    <charts:Legend
+                        HorizontalPosition="RightOutside"
+                        Orientation="TopToBottom"
+                        VerticalPosition="Center" />
+                </charts:PieChartView.Legend>
+
+                <charts:PieChartView.Series>
+                    <charts:DonutSeries>
+                        <charts:DonutSeries.Data>
+                            <charts:PieSeriesDataAdapter
+                                DataSource="{Binding dashboardchart}"
+                                LabelDataMember="AssetsType"
+                                ValueDataMember="Value" />
+                        </charts:DonutSeries.Data>
+                    </charts:DonutSeries>
+                </charts:PieChartView.Series>
+
+            </charts:PieChartView>
+
+            <StackLayout
+                Margin="5,0,5,0"
+                Padding="5"
+                Orientation="Horizontal">
+                <RadioButton
+                    x:Name="assetsButton"
+                    Margin="5,0,0,0"
+                    Content="Assets Chart"
+                    IsChecked="True" />
+                <RadioButton
+                    x:Name="liabilitiesButton"
+                    Margin="40,0,0,0"
+                    Content="Liabilities Chart" />
+            </StackLayout>
+
+            <dxcv:DXCollectionView x:Name="collectionView" ItemsSource="{Binding topholdings}">
+                <dxcv:DXCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="10,0,10,20">
+                            <Grid ColumnDefinitions="100,*">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    Text="{Binding Symbol}"
+                                    TextColor="#55575c" />
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding Marketvalue}"
+                                    TextColor="#959aa0" />
+                            </Grid>
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="11"
+                                Text="{Binding Description}"
+                                TextColor="DimGray" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Quantity: "
+                                    TextColor="Black" />
+                                <Label Text="{Binding Quantity}" TextColor="Black" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </dxcv:DXCollectionView.ItemTemplate>
+
+            </dxcv:DXCollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

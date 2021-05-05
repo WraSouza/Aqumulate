@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataform="http://schemas.devexpress.com/xamarin/2014/forms/dataform"
+             x:Class="Aqumulate.Views.LoginView">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Image HeightRequest="150" Source="logoaqumulate.jpg" />
+
+            <Label
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Sign in to get started"
+                TextColor="Black" />
+
+            <StackLayout Margin="0,40,0,0" Padding="15">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Username"
+                    TextColor="Black" />
+
+                <Entry x:Name="entryUser" />
+
+                <Label
+                    Margin="0,30,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Password"
+                    TextColor="Black" />
+
+                <Entry x:Name="entryUserPassword" IsPassword="True" />
+
+                <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="#66BEA1"
+                    Clicked="openAppShell"
+                    Text="Sign In"
+                    TextColor="White" />
+
+                <Label
+                    Margin="0,20,0,0"
+                    Text="Forgot Password?"
+                    TextColor="#66BEA1"
+                    TextDecorations="Underline" />
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
